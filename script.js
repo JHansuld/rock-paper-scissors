@@ -1,42 +1,45 @@
-const choices = ["ROCK", "PAPER", "SCISSORS"]
-
-// Makes the computers pick
+// gives a random value from the array
 function computerPlay() {
-    const min = Math.ceil(0)
-    const max = Math.floor(3)
-    let rndm = Math.floor(Math.random() * (max - min) + min)
-    let computerChoice = choices[rndm]
+    let choice = ['rock', 'paper', 'scissors'];
+    let randomPlay = Math.floor(Math.random() * choice.length);
+    return choice[randomPlay]
+
 }
+
+
+
 // Plays a round
-function playRound(playerSelection, computerChoice) {
-    playerSelection = playerSelection.toCapitalize
-    if (playerSelection === "ROCK") {
-        if (computerChoice === "ROCK") {
+function playRound() {
+    const playerSelection = "rock";
+    const computerSelection = computerPlay();
+    playerSelection.toLowerCase();
+    if (playerSelection === "rock") {
+        if (computerSelection === "rock") {
             return "Double rock! That's a tie!"
         }
-        else if (computerChoice === "PAPER") {
+        else if (computerSelection === "paper") {
             return "Paper beats rock, you lose!"
         }
         else {
             return "Rock beats scissors! You win!"
         }
     }
-    else if (playerSelection === "PAPER") {
-        if (computerChoice === "PAPER") {
+    else if (playerSelection === "paper") {
+        if (computerSelection === "paper") {
             return "Double paper! That's a tie!"
         }
-        else if (computerChoice === "SCISSORS") {
+        else if (computerSelection === "scissors") {
             return "Scissors beats paper, you lose!"
         }
         else {
             return "Paper beats rock! You win!"
         }
     }
-    else if (playerSelection === "SCISSORS") {
-        if (computerChoice === "SCISSORS") {
+    else if (playerSelection === "scissors") {
+        if (computerSelection === "scissors") {
             return "Double scissors! That's a tie!"
         }
-        else if (computerChoice === "ROCK") {
+        else if (computerSelection === "rock") {
             return "Rock beats scissors, you lose!"
         }
         else {
@@ -44,7 +47,3 @@ function playRound(playerSelection, computerChoice) {
         }
     }
 }
-
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
