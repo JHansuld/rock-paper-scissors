@@ -6,6 +6,9 @@ function computerPlay() {
 
 }
 
+let playerScore = 0;
+let computerScore = 0;
+
 // Plays a round
 function playRound() {
     const playerSelection = "rock";
@@ -16,10 +19,10 @@ function playRound() {
             return "Double rock! That's a tie!"
         }
         else if (computerSelection === "paper") {
-            return "Paper beats rock, you lose!"
+            return "Paper beats rock, you lose!", computerScore++
         }
         else {
-            return "Rock beats scissors! You win!"
+            return "Rock beats scissors! You win!", playerScore++
         }
     }
     else if (playerSelection === "paper") {
@@ -27,10 +30,10 @@ function playRound() {
             return "Double paper! That's a tie!"
         }
         else if (computerSelection === "scissors") {
-            return "Scissors beats paper, you lose!"
+            return "Scissors beats paper, you lose!", computerScore++
         }
         else {
-            return "Paper beats rock! You win!"
+            return "Paper beats rock! You win!", playerScore++
         }
     }
     else if (playerSelection === "scissors") {
@@ -38,10 +41,11 @@ function playRound() {
             return "Double scissors! That's a tie!"
         }
         else if (computerSelection === "rock") {
-            return "Rock beats scissors, you lose!"
+            return "Rock beats scissors, you lose!", computerScore++
         }
         else {
-            return "Scissors beats paper! You win!"
+            return "Scissors beats paper! You win!", playerScore++
+
         }
     }
 }
@@ -50,4 +54,5 @@ function game() {
     for (i = 0; i < 5; i++) {
         playRound();
     }
+    console.log(playerScore, computerScore)
 }
