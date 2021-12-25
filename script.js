@@ -6,8 +6,6 @@ function computerPlay() {
 
 }
 
-
-
 // Plays a round
 function playRound() {
     const playerSelection = "rock";
@@ -45,5 +43,11 @@ function playRound() {
         else {
             return "Scissors beats paper! You win!"
         }
+    }
+}
+
+function game() {
+    for (i = 0; i < 5; i++) {
+        playRound();
     }
 }
