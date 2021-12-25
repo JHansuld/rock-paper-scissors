@@ -55,7 +55,7 @@ function playRound() {
         }
     }
 }
-
+// main function
 function game() {
     for (i = 0; i < 5; i++) {
         playRound();
