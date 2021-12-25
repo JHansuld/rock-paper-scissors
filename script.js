@@ -11,40 +11,46 @@ let computerScore = 0;
 
 // Plays a round
 function playRound() {
-    const playerSelection = "rock";
+    const playerSelection = window.prompt("Rock, paper, or scissors?");
     const computerSelection = computerPlay();
     playerSelection.toLowerCase();
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
-            return "Double rock! That's a tie!"
+            window.alert("Double rock! That's a tie!")
         }
         else if (computerSelection === "paper") {
-            return "Paper beats rock, you lose!", computerScore++
+            window.alert("Paper beats rock, you lose!")
+            return computerScore++
         }
         else {
-            return "Rock beats scissors! You win!", playerScore++
+            window.alert("Rock beats scissors! You win!")
+            return playerScore++
         }
     }
     else if (playerSelection === "paper") {
         if (computerSelection === "paper") {
-            return "Double paper! That's a tie!"
+            window.alert("Double paper! That's a tie!")
         }
         else if (computerSelection === "scissors") {
-            return "Scissors beats paper, you lose!", computerScore++
+            window.alert("Scissors beats paper, you lose!")
+            return computerScore++
         }
         else {
-            return "Paper beats rock! You win!", playerScore++
+            window.alert("Paper beats rock! You win!")
+            return playerScore++
         }
     }
     else if (playerSelection === "scissors") {
         if (computerSelection === "scissors") {
-            return "Double scissors! That's a tie!"
+            window.alert("Double scissors! That's a tie!")
         }
         else if (computerSelection === "rock") {
-            return "Rock beats scissors, you lose!", computerScore++
+            window.alert("Rock beats scissors, you lose!")
+            return computerScore++
         }
         else {
-            return "Scissors beats paper! You win!", playerScore++
+            window.alert("Scissors beats paper! You win!")
+            return playerScore++
 
         }
     }
