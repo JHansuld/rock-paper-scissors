@@ -20,6 +20,10 @@ div{
     align-items: center;
 }
 
+#results{
+    justify-content: space-around;
+}
+
 button{
     height: 200px;
     width: 200px;

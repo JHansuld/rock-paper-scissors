@@ -1,61 +1,117 @@
-// gives a random value from the array
+// Accessing the buttons and text labels
+const rockButton = document.getElementById("rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+const playerScore = document.getElementById("player-score");
+const computerScore = document.getElementById("computer-score");
+const tieText = document.getElementById("result-tie");
+// Global variables to keep track of round results that I am not a fan of
+let computerWinAmount = 0;
+let playerWinAmount = 0;
+let tieAmount = 0;
+
+//Event listeners to monitor button press and assign
+//corresponding choice
+rockButton.addEventListener("click", function () {
+    let playerSelection = "rock";
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+});
+
+paperButton.addEventListener("click", function () {
+    let playerSelection = "paper";
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+});
+
+scissorsButton.addEventListener("click", function () {
+    let playerSelection = "scissors";
+    let computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+});
+
+// Function that pseudo-randomly generates a computer selection
 function computerPlay() {
-    let choice = ['rock', 'paper', 'scissors'];
-    let randomPlay = Math.floor(Math.random() * choice.length);
-    return choice[randomPlay]
-
+    // Uses Math.random() to generate a number between 0-2
+    let choice = Math.floor(Math.random() * 3);
+    // Reassigns string value depending on which number
+    switch (choice) {
+        case 0:
+            choice = "rock";
+            break;
+        case 1:
+            choice = "paper";
+            break;
+        case 2:
+            choice = "scissors";
+            break;
+    }
+    return choice;
 }
 
-let playerScore = 0;
-let computerScore = 0;
+// Group of functions to change text labels after rounds
+function playerWin() {
+    ++playerWinAmount;
+    playerScore.innerHTML = "Your score is: " + playerWinAmount;
+}
 
-// Plays a round
-function playRound() {
-    const playerSelection = window.prompt("Rock, paper, or scissors?");
-    const computerSelection = computerPlay();
-    playerSelection.toLowerCase();
-    if (playerSelection === "rock") {
-        if (computerSelection === "rock") {
-            window.alert("Double rock! That's a tie!")
-        }
-        else if (computerSelection === "paper") {
-            window.alert("Paper beats rock, you lose!")
-            return computerScore++
-        }
-        else {
-            window.alert("Rock beats scissors! You win!")
-            return playerScore++
-        }
-    }
-    else if (playerSelection === "paper") {
-        if (computerSelection === "paper") {
-            window.alert("Double paper! That's a tie!")
-        }
-        else if (computerSelection === "scissors") {
-            window.alert("Scissors beats paper, you lose!")
-            return computerScore++
-        }
-        else {
-            window.alert("Paper beats rock! You win!")
-            return playerScore++
-        }
-    }
-    else if (playerSelection === "scissors") {
-        if (computerSelection === "scissors") {
-            window.alert("Double scissors! That's a tie!")
-        }
-        else if (computerSelection === "rock") {
-            window.alert("Rock beats scissors, you lose!")
-            return computerScore++
-        }
-        else {
-            window.alert("Scissors beats paper! You win!")
-            return playerScore++
+function computerWin() {
+    ++computerWinAmount;
+    computerScore.innerHTML = "The computer score is: " + computerWinAmount;
+}
 
-        }
+function tieWin() {
+    ++tieAmount;
+    tieText.innerHTML = "Tie rounds: " + tieAmount;
+}
+
+// Function that checks winning very inelegantly
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock" &&
+        computerSelection == "rock") {
+        tieWin();
+    } else if (playerSelection == "rock" &&
+        computerSelection == "scissors") {
+        playerWin();
+    } else if (playerSelection == "rock" &&
+        computerSelection == "paper") {
+        computerWin();
+    }
+
+    if (playerSelection == "paper" &&
+        computerSelection == "rock") {
+        playerWin();
+    } else if (playerSelection == "paper" &&
+        computerSelection == "paper") {
+        tieWin();
+    } else if (playerSelection == "paper" &&
+        computerSelection == "scissors") {
+        computerWin();
+    }
+
+    if (playerSelection == "scissors" &&
+        computerSelection == "rock") {
+        computerWin();
+    } else if (playerSelection == "scissors" &&
+        computerSelection == "paper") {
+        playerWin();
+    } else if (playerSelection == "scissors" &&
+        computerSelection == "scissors") {
+        tieWin();
+    }
+
+    if (computerWinAmount == 5) {
+        alert("You lost! Better luck next time :(");
+        reset();
+    } else if (playerWinAmount == 5) {
+        alert("You won! Congratulations! :)")
+        reset();
     }
 }
-// main function
-function game() {
-    console.log(playerScore, computerScore)
+
+// Helper function to reset after game end
+function reset() {
+    playerScore.innerHTML = "Your score is: 0";
+    computerScore.innerHTML = "The computer score is: 0";
+    tieText.innerHTML = "Tie rounds: 0";
 }
